@@ -4,17 +4,30 @@
 ### getCategoryList
 > category List를 불러오는 API
 ### method
-GET
+> GET
 #### params
 #### headers
 #### request example
 #### response example
-
+```json
+[
+  {
+    "categoryId": "c12345",
+    "subject": "전자기기",
+    "parentCategoryId": "c123"
+  },
+  {
+    "categoryId": "c12345",
+    "subject": "전자기기",
+    "parentCategoryId": "root"
+  }
+]
+```
 ---
 ### getItem
 > item의 상세정보를 불러오는 API
 ### method
-GET
+> GET
 #### params
 #### headers
 #### request example
@@ -22,7 +35,7 @@ GET
 ```json
 {
   "categoryId": "c12345",
-  "title": "닌텐도Switch",
+  "subject": "닌텐도Switch",
   "market": "coupang",
   "price": 26000,
   "buyLink": "http://somewhere.in.the.world",
@@ -37,7 +50,7 @@ GET
 ---
 ### getCategoryList
 ### method
-GET
+> GET
 #### params
 #### headers
 #### request example
@@ -46,7 +59,7 @@ GET
 ---
 ### getCategoryList
 ### method
-GET
+> GET
 #### params
 #### headers
 #### request example
