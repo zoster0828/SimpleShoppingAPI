@@ -1,7 +1,7 @@
 # SimpleShoppingAPI
 
-## API List
-### getCategoryList
+# API List
+## getCategoryList
 > category List를 불러오는 API
 ### method
 > GET
@@ -24,7 +24,7 @@
 ]
 ```
 ---
-### getItem
+## getItem
 > item의 상세정보를 불러오는 API, 최대 10개의 comments를 같이 읽어옴
 ### method
 > GET
@@ -77,7 +77,7 @@
 ```
 
 ---
-### getListFromCategory
+## getListFromCategory
 > Category 하위의 itemList를 가지고 오는 API, 최하위 CategoryID로만 호출 할 수 있음
 ### method
 > GET
@@ -117,7 +117,7 @@
 ]
 ```
 ---
-### getComments
+## getComments
 ### method
 > GET
 #### params
