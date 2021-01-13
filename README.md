@@ -46,6 +46,12 @@
       "middle": "http://imageLink.com",
       "small": "http://imageLink.com"
   } ,
+  "like": 0,
+  "hate": 0,
+  "brand": "닌텐도",
+  "seller": "태경몰",
+  "courier": "CJ 대한통운",
+  "remain": 15,
   "description": "Coupang에서 진행하는 12월 우수상품",
   "comments": [
                   {
