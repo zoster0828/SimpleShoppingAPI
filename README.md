@@ -5,6 +5,8 @@
 > category List를 불러오는 API
 ### method
 > GET
+### URI
+> /category
 #### params
 #### headers
 #### request example
@@ -28,6 +30,8 @@
 > item의 상세정보를 불러오는 API, 최대 10개의 comments를 같이 읽어옴
 ### method
 > GET
+### URI
+> /item/{itemId}
 #### params
 > itemId
 #### headers
@@ -87,6 +91,8 @@
 > Category 하위의 itemList를 가지고 오는 API, 최하위 CategoryID로만 호출 할 수 있음
 ### method
 > GET
+### URI
+> /category/{categoryId}
 #### params
 > categoryId
 #### headers
@@ -126,8 +132,9 @@
 ## getComments
 ### method
 > GET
+### URI
+> /item/{itemId}/comments
 #### params
-> itemId
 #### headers
 #### request example
 #### response example
