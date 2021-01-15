@@ -1,7 +1,9 @@
 package com.zoster.SimpleShoppingAPI.interfaces.view;
 
-import com.zoster.SimpleShoppingAPI.vo.CommentVO;
-import com.zoster.SimpleShoppingAPI.vo.ItemVO;
+import com.zoster.SimpleShoppingAPI.domain.entity.CommentsEntity;
+import com.zoster.SimpleShoppingAPI.domain.entity.ItemEntity;
+import com.zoster.SimpleShoppingAPI.infra.vo.CommentsVO;
+import com.zoster.SimpleShoppingAPI.infra.vo.ItemVO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 public class GetItemView {
-    ItemVO itemVO;
-    List<CommentVO> commentVOList;
+    ItemEntity itemEntity;
+    List<CommentsEntity> commentsVOList;
 }

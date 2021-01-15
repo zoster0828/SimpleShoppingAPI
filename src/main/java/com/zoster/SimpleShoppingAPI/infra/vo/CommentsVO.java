@@ -1,11 +1,11 @@
-package com.zoster.SimpleShoppingAPI.vo;
+package com.zoster.SimpleShoppingAPI.infra.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CommentVO {
+public class CommentsVO {
     String commentsId;
     Long timestamp;
     String itemId;

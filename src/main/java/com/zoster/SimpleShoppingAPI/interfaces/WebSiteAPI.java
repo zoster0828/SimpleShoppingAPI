@@ -1,26 +1,58 @@
 package com.zoster.SimpleShoppingAPI.interfaces;
 
+import com.zoster.SimpleShoppingAPI.domain.aggregate.GetItemWithCommentsAggregate;
+import com.zoster.SimpleShoppingAPI.domain.entity.CategoryEntity;
+import com.zoster.SimpleShoppingAPI.domain.entity.CommentsEntity;
+import com.zoster.SimpleShoppingAPI.domain.entity.ItemEntity;
+import com.zoster.SimpleShoppingAPI.domain.repository.CategoryRepository;
+import com.zoster.SimpleShoppingAPI.domain.repository.CommentsRepository;
+import com.zoster.SimpleShoppingAPI.domain.service.ItemService;
 import com.zoster.SimpleShoppingAPI.interfaces.view.GetCategoryListView;
+import com.zoster.SimpleShoppingAPI.interfaces.view.GetCategoryView;
+import com.zoster.SimpleShoppingAPI.interfaces.view.GetCommentsView;
 import com.zoster.SimpleShoppingAPI.interfaces.view.GetItemView;
-import com.zoster.SimpleShoppingAPI.vo.CategoryVO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.zoster.SimpleShoppingAPI.infra.vo.CategoryVO;
+import com.zoster.SimpleShoppingAPI.infra.vo.CommentsVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.List;
 
 
 @RestController
 public class WebSiteAPI{
 
-    @GetMapping("/getCategoryList")
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    ItemService itemService;
+
+    @Autowired
+    CommentsRepository commentsRepository;
+
+    @GetMapping("/category")
     public GetCategoryListView getCategoryList(){
-        CategoryVO categoryVO = new CategoryVO("categoryId123asd", "닌텐도Switch", "parentId1234");
-        return new GetCategoryListView(Arrays.asList(categoryVO));
+        List<CategoryEntity> categoryList = categoryRepository.findAll();
+        return new GetCategoryListView(categoryList);
     }
 
-//    @GetMapping("/getCategoryList")
-//    public GetItemView getItem(){
-//        return new GetItemView();
-//    }
+    @GetMapping("/item/{itemId}")
+    public GetItemView getItemWithComments(@PathVariable("itemId") String itemId){
+        GetItemWithCommentsAggregate getItemWithCommentsAggregate = itemService.getItemWithComments(itemId);
+        return new GetItemView(getItemWithCommentsAggregate.getItemEntity(), getItemWithCommentsAggregate.getCommentsEntityList());
+    }
+
+    @GetMapping("/category/{categoryId}")
+    public GetCategoryView getListFromCategory(@PathVariable("categoryId") String categoryId){
+        List<CategoryEntity> categoryEntity = categoryRepository.findById(categoryId);
+        return new GetCategoryView(categoryEntity);
+    }
+
+    @GetMapping("/item/{itemId}/comments")
+    public GetCommentsView getComments(@PathVariable("itemId") String itemId,
+                                   @RequestParam("lastId") String lastId){
+        List<CommentsEntity> commentsVOList = commentsRepository.findByItemId(itemId, lastId);
+        return new GetCommentsView(commentsVOList);
+    }
 }

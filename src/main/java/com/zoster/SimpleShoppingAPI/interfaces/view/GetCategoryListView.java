@@ -1,7 +1,7 @@
 package com.zoster.SimpleShoppingAPI.interfaces.view;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import com.zoster.SimpleShoppingAPI.vo.CategoryVO;
+import com.zoster.SimpleShoppingAPI.domain.entity.CategoryEntity;
+import com.zoster.SimpleShoppingAPI.infra.vo.CategoryVO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,5 +12,5 @@ import java.util.List;
 @Getter
 @Setter
 public class GetCategoryListView {
-    List<CategoryVO> categoryList;
+    List<CategoryEntity> categoryList;
 }

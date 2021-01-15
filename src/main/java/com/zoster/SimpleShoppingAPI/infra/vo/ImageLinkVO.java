@@ -1,4 +1,4 @@
-package com.zoster.SimpleShoppingAPI.vo;
+package com.zoster.SimpleShoppingAPI.infra.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
