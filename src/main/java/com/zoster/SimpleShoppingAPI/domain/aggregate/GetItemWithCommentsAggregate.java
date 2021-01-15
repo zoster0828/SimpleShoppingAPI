@@ -2,7 +2,6 @@ package com.zoster.SimpleShoppingAPI.domain.aggregate;
 
 import com.zoster.SimpleShoppingAPI.domain.entity.CommentsEntity;
 import com.zoster.SimpleShoppingAPI.domain.entity.ItemEntity;
-import com.zoster.SimpleShoppingAPI.infra.vo.ItemVO;
 import lombok.Getter;
 
 import java.util.List;

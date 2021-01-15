@@ -14,22 +14,19 @@ public class CommentsRepository {
     @Autowired
     CommentsMysqlClient commentsMysqlClient;
     public List<CommentsEntity> findByItemId(String itemId, String lastId) {
-        List<CommentsVO> commentsVOList = commentsMysqlClient.get(itemId, lastId);
-
-        List<CommentsEntity> commentsEntityList = commentsVOListToEntityList(commentsVOList);
-
-        return commentsEntityList;
+        List<CommentsVO> commentsVOList = commentsMysqlClient.findByItemId(itemId, lastId);
+        return commentsVOListToEntityList(commentsVOList);
     }
 
     public List<CommentsEntity> findLatest10ByItemId(String itemId) {
-        List<CommentsVO> commentsVOList = commentsMysqlClient.get(itemId);
-
-        List<CommentsEntity> commentsEntityList = commentsVOListToEntityList(commentsVOList);
-
-        return commentsEntityList;
+        List<CommentsVO> commentsVOList = commentsMysqlClient.findTop10ByItemIdOrderByTimestamp(itemId);
+        return commentsVOListToEntityList(commentsVOList);
     }
 
     private List<CommentsEntity> commentsVOListToEntityList(List<CommentsVO> commentsVOList) {
+        if(commentsVOList == null){
+            return new ArrayList<>();
+        }
         List<CommentsEntity> commentsEntityList = new ArrayList<>();
 
         for (CommentsVO commentsVO : commentsVOList) {

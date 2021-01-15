@@ -14,20 +14,21 @@ public class CategoryRepository {
     @Autowired
     CategoryMysqlClient categoryMysqlClient;
     public List<CategoryEntity> findAll() {
-        List<CategoryVO> categoryVOList = categoryMysqlClient.getAll();
-        List<CategoryEntity> categoryEntityList = categoryVOListToEntityList(categoryVOList);
-
-        return categoryEntityList;
+        List<CategoryVO> categoryVOList = categoryMysqlClient.findAll();
+        return categoryVOListToEntityList(categoryVOList);
     }
 
     public List<CategoryEntity> findById(String categoryId) {
-        List<CategoryVO> categoryVOList = categoryMysqlClient.getAll();
-        List<CategoryEntity> categoryEntityList = categoryVOListToEntityList(categoryVOList);
-
-        return categoryEntityList;
+        List<CategoryVO> categoryVOList = categoryMysqlClient.findByCategoryId(categoryId);
+        return categoryVOListToEntityList(categoryVOList);
     }
 
     private List<CategoryEntity> categoryVOListToEntityList(List<CategoryVO> categoryVOList){
+        if(categoryVOList == null){
+            //todo : create exception
+            return null;
+        }
+
         List<CategoryEntity> categoryEntityList = new ArrayList<>();
         for(CategoryVO categoryVO : categoryVOList){
             categoryEntityList.add(new CategoryEntity(categoryVO));

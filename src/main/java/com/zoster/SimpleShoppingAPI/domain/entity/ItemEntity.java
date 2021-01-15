@@ -1,6 +1,5 @@
 package com.zoster.SimpleShoppingAPI.domain.entity;
 
-import com.zoster.SimpleShoppingAPI.infra.vo.CommentsVO;
 import com.zoster.SimpleShoppingAPI.infra.vo.ImageLinkVO;
 import com.zoster.SimpleShoppingAPI.infra.vo.ItemVO;
 import lombok.Getter;
