@@ -12,18 +12,20 @@
 #### request example
 #### response example
 ```json
-[
-  {
-    "categoryId": "c12345",
-    "subject": "닌텐도Switch",
-    "parentCategoryId": "c123"
-  },
-  {
-    "categoryId": "c123",
-    "subject": "전자기기",
-    "parentCategoryId": "root"
-  }
-]
+{
+    "categoryList" :[
+      {
+        "categoryId": "c12345",
+        "subject": "닌텐도Switch",
+        "parentCategoryId": "c123"
+      },
+      {
+        "categoryId": "c123",
+        "subject": "전자기기",
+        "parentCategoryId": "root"
+      }
+    ]
+}
 ```
 ---
 ## getItem
@@ -92,41 +94,43 @@
 ### method
 > GET
 ### URI
-> /items/category/{categoryId}
+> /item/category/{categoryId}
 #### params
 > categoryId
 #### headers
 #### request example
 #### response example
 ```json
-[
-  {
-     "categoryId": "c12345",
-     "itemId": "ffasdccwty3412aa23",
-     "subject": "닌텐도Switch",
-     "market": "coupang",
-     "price": 26000,
-     "buyLink": "http://somewhere.in.the.world",
-     "imageLink": {
-         "big": "http://imageLink.com",
-         "middle": "http://imageLink.com",
-         "small": "http://imageLink.com"
-     } 
-  },
-  {
-     "categoryId": "c12345",
-     "itemId": "ffasdccwty3412aa23",
-     "subject": "PlasyStation5",
-     "market": "11st",
-     "price": 52000,
-     "buyLink": "http://somewhere.in.the.world",
-     "imageLink": {
-         "big": "http://imageLink.com",
-         "middle": "http://imageLink.com",
-         "small": "http://imageLink.com"
-     } 
-  }
-]
+{
+  "itemList": [
+    {
+      "categoryId": "c12345",
+      "itemId": "ffasdccwty3412aa23",
+      "subject": "닌텐도Switch",
+      "market": "coupang",
+      "price": 26000,
+      "buyLink": "http://somewhere.in.the.world",
+      "imageLink": {
+        "big": "http://imageLink.com",
+        "middle": "http://imageLink.com",
+        "small": "http://imageLink.com"
+      }
+    },
+    {
+      "categoryId": "c12345",
+      "itemId": "ffasdccwty3412aa23",
+      "subject": "PlasyStation5",
+      "market": "11st",
+      "price": 52000,
+      "buyLink": "http://somewhere.in.the.world",
+      "imageLink": {
+        "big": "http://imageLink.com",
+        "middle": "http://imageLink.com",
+        "small": "http://imageLink.com"
+      }
+    }
+  ]
+}
 ```
 ---
 ## getComments

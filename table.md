@@ -3,16 +3,16 @@
 ```mysql
 CREATE TABLE category
 (
-    categoryId varchar(255) primary key,
+    category_id varchar(255) primary key,
     subject varchar(255),
-    parentCategoryId varchar(255)
+    parent_category_id varchar(255)
 );
 ```
 
 ```mysql
 CREATE TABLE comments
 (
-    commentsId varchar(255) primary key,
+    comments_id varchar(255) primary key,
     timestamp bigint,
     itemId varchar(255),
     text varchar(255),
@@ -24,15 +24,15 @@ CREATE TABLE comments
 ```mysql
 CREATE TABLE items
 (
-    itemId varchar(255) primary key,
-    categoryId varchar(255),
+    item_id varchar(255) primary key,
+    category_id varchar(255),
     subject varchar(255),
     market varchar(255),
     price int,
-    buylink varchar(255),
-    imageLinkBig varchar(255),
-    imageLinkMiddle varchar(255),
-    imageLinkSmall varchar(255),
+    buy_link varchar(255),
+    image_link_big varchar(255),
+    image_link_middle varchar(255),
+    image_link_small varchar(255),
     likes int,
     hates int,
     brand varchar(255),
