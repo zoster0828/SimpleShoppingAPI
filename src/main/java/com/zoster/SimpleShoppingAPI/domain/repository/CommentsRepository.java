@@ -14,7 +14,7 @@ public class CommentsRepository {
     @Autowired
     CommentsMysqlClient commentsMysqlClient;
     public List<CommentsEntity> findByItemId(String itemId, String lastId) {
-        List<CommentsVO> commentsVOList = commentsMysqlClient.findByItemId(itemId, lastId);
+        List<CommentsVO> commentsVOList = commentsMysqlClient.findByItemIdAndCommentsId(itemId, lastId);
         return commentsVOListToEntityList(commentsVOList);
     }
 

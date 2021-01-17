@@ -17,7 +17,7 @@ public class CommentsEntity {
         this.timestamp = commentsVO.getTimestamp();
         this.itemId = commentsVO.getItemId();
         this.text = commentsVO.getText();
-        this. like = commentsVO.getLike();
-        this. hate = commentsVO.getHate();
+        this. like = commentsVO.getLikes();
+        this. hate = commentsVO.getHates();
     }
 }

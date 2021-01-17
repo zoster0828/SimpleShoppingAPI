@@ -25,4 +25,9 @@ public class ItemService {
 
         return getItemWithCommentsAggregate;
     }
+
+    public List<ItemEntity> getItemByCategoryId(String categoryId) {
+        List<ItemEntity> itemEntityList = itemRepository.findByCategoryId(categoryId);
+        return itemEntityList;
+    }
 }

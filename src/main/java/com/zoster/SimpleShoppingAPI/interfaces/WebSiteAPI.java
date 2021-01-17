@@ -3,23 +3,24 @@ package com.zoster.SimpleShoppingAPI.interfaces;
 import com.zoster.SimpleShoppingAPI.domain.aggregate.GetItemWithCommentsAggregate;
 import com.zoster.SimpleShoppingAPI.domain.entity.CategoryEntity;
 import com.zoster.SimpleShoppingAPI.domain.entity.CommentsEntity;
+import com.zoster.SimpleShoppingAPI.domain.entity.ItemEntity;
 import com.zoster.SimpleShoppingAPI.domain.repository.CategoryRepository;
 import com.zoster.SimpleShoppingAPI.domain.repository.CommentsRepository;
 import com.zoster.SimpleShoppingAPI.domain.service.ItemService;
+import com.zoster.SimpleShoppingAPI.infra.vo.ItemVO;
 import com.zoster.SimpleShoppingAPI.interfaces.view.GetCategoryListView;
 import com.zoster.SimpleShoppingAPI.interfaces.view.GetCategoryView;
 import com.zoster.SimpleShoppingAPI.interfaces.view.GetCommentsView;
 import com.zoster.SimpleShoppingAPI.interfaces.view.GetItemView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "*")
 public class WebSiteAPI{
 
     @Autowired
@@ -43,13 +44,14 @@ public class WebSiteAPI{
         return new GetItemView(getItemWithCommentsAggregate.getItemEntity(), getItemWithCommentsAggregate.getCommentsEntityList());
     }
 
-    @GetMapping("/category/{categoryId}")
+
+    @GetMapping("/item/category/{categoryId}")
     public GetCategoryView getListFromCategory(@PathVariable("categoryId") String categoryId){
-        List<CategoryEntity> categoryEntity = categoryRepository.findById(categoryId);
-        return new GetCategoryView(categoryEntity);
+        List<ItemEntity> itemEntityList = itemService.getItemByCategoryId(categoryId);
+        return new GetCategoryView(itemEntityList);
     }
 
-    @GetMapping("/item/{itemId}/comments")
+    @GetMapping("/comments/{itemId}")
     public GetCommentsView getComments(@PathVariable("itemId") String itemId,
                                    @RequestParam("lastId") String lastId){
         List<CommentsEntity> commentsVOList = commentsRepository.findByItemId(itemId, lastId);

@@ -28,9 +28,9 @@ public class ItemEntity {
         this.market = itemVO.getMarket();
         this.price = itemVO.getPrice();
         this.buyLink = itemVO.getBuyLink();
-        this.imageLink = itemVO.getImageLink();
-        this.like = itemVO.getLike();
-        this.hate = itemVO.getHate();
+        this.imageLink = new ImageLinkVO(itemVO.getImageLinkBig(), itemVO.getImageLinkMiddle(), itemVO.getImageLinkSmall());
+        this.like = itemVO.getLikes();
+        this.hate = itemVO.getHates();
         this.brand = itemVO.getBrand();
         this.seller = itemVO.getSeller();
         this.courier = itemVO.getCourier();
