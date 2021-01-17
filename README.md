@@ -92,7 +92,7 @@
 ### method
 > GET
 ### URI
-> /category/{categoryId}
+> /items/category/{categoryId}
 #### params
 > categoryId
 #### headers
