@@ -99,6 +99,7 @@
 > categoryId
 #### headers
 #### request example
+GET /item/category/__*c1*__
 #### response example
 ```json
 {
@@ -133,14 +134,15 @@
 }
 ```
 ---
-## getComments
+## getCommentList
 ### method
 > GET
 ### URI
-> /item/{itemId}/comments
+> /comments/{commentGroupId:#itemId}
 #### params
 #### headers
 #### request example
+GET /comments/__*item12345*__
 #### response example
 ```json
 [
