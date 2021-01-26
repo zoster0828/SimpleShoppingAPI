@@ -2,6 +2,7 @@ package com.zoster.SimpleShoppingAPI.domain.entity;
 
 import com.zoster.SimpleShoppingAPI.infra.vo.ImageLinkVO;
 import com.zoster.SimpleShoppingAPI.infra.vo.ItemVO;
+import com.zoster.SimpleShoppingAPI.infra.vo.RecommendVO;
 import lombok.Getter;
 
 @Getter
@@ -18,23 +19,21 @@ public class ItemEntity {
     private String brand;
     private String seller;
     private String courier;
-    private Integer remain;
     private String description;
 
-    public ItemEntity(ItemVO itemVO) {
+    public ItemEntity(ItemVO itemVO, RecommendVO recommendVO) {
         this.categoryId = itemVO.getCategoryId();
         this.itemId = itemVO.getItemId();
-        this.subject = itemVO.getSubject();
-        this.market = itemVO.getMarket();
-        this.price = itemVO.getPrice();
-        this.buyLink = itemVO.getBuyLink();
-        this.imageLink = new ImageLinkVO(itemVO.getImageLinkBig(), itemVO.getImageLinkMiddle(), itemVO.getImageLinkSmall());
+        this.subject = itemVO.getName();
+        this.market = recommendVO.getMarket();
+        this.price = recommendVO.getPrice();
+        this.buyLink = recommendVO.getBuyLink();
+        this.imageLink = new ImageLinkVO(itemVO.getImageUrlBig(), itemVO.getImageUrlMiddle(), itemVO.getImageUrlSmall());
         this.like = itemVO.getLikes();
         this.hate = itemVO.getHates();
-        this.brand = itemVO.getBrand();
-        this.seller = itemVO.getSeller();
-        this.courier = itemVO.getCourier();
-        this.remain = itemVO.getRemain();
+        this.brand = recommendVO.getBrand();
+        this.seller = recommendVO.getSeller();
+        this.courier = recommendVO.getCourier();
         this.description = itemVO.getDescription();
     }
 }

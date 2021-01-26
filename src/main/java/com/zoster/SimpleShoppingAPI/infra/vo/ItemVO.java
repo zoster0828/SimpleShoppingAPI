@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "items")
+@Table(name = "items2")
 public class ItemVO {
     @Id
     @Column(name = "item_id", nullable = false)
@@ -23,44 +23,26 @@ public class ItemVO {
     @Column(name = "category_id", nullable = false)
     String categoryId;
 
-    @Column(name = "subject", nullable = false)
-    String subject;
+    @Column(name = "name", nullable = false)
+    String name;
 
-    @Column(name = "market", nullable = false)
-    String market;
+    @Column(name = "min_price", nullable = false)
+    Integer minPrice;
 
-    @Column(name = "price", nullable = false)
-    Integer price;
+    @Column(name = "img_url_big", nullable = false)
+    String imageUrlBig;
 
-    @Column(name = "buy_link", nullable = false)
-    String buyLink;
+    @Column(name = "img_url_middle", nullable = false)
+    String imageUrlMiddle;
 
-    @Column(name = "image_link_big", nullable = false)
-    String imageLinkBig;
-
-    @Column(name = "image_link_middle", nullable = false)
-    String imageLinkMiddle;
-
-    @Column(name = "image_link_small", nullable = false)
-    String imageLinkSmall;
+    @Column(name = "img_url_small", nullable = false)
+    String imageUrlSmall;
 
     @Column(name = "likes", nullable = false)
     Integer likes;
 
     @Column(name = "hates", nullable = false)
     Integer hates;
-
-    @Column(name = "brand", nullable = false)
-    String brand;
-
-    @Column(name = "seller", nullable = false)
-    String seller;
-
-    @Column(name = "courier", nullable = false)
-    String courier;
-
-    @Column(name = "remain", nullable = false)
-    Integer remain;
 
     @Column(name = "description", nullable = false)
     String description;
