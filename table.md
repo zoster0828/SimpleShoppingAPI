@@ -12,7 +12,7 @@ CREATE TABLE category
 ```mysql
 CREATE TABLE comments
 (
-    comments_id varchar(255) primary key,
+    comments_id int AUTO_INCREMENT primary key,
     timestamp bigint,
     item_id varchar(255),
     text varchar(255),
@@ -29,28 +29,25 @@ CREATE TABLE items
     name varchar(255),
     min_price int,
     buy_link varchar(255),
-    img_url_big varchar(255),
-    img_url_middle varchar(255),
-    img_url_small varchar(255),
     likes int,
     hates int,
     description varchar(255)
 );
 
-+----------------+--------------+------+-----+---------+----------------+
-| Field          | Type         | Null | Key | Default | Extra          |
-+----------------+--------------+------+-----+---------+----------------+
-| item_id        | int(11)      | NO   | PRI | NULL    | auto_increment |
-| category_id    | varchar(255) | YES  |     | NULL    |                |
-| name           | varchar(255) | YES  |     | NULL    |                |
-| min_price      | int(11)      | YES  |     | NULL    |                |
-| img_url_big    | varchar(255) | YES  |     | NULL    |                |
-| img_url_middle | varchar(255) | YES  |     | NULL    |                |
-| img_url_small  | varchar(255) | YES  |     | NULL    |                |
-| likes          | int(11)      | YES  |     | NULL    |                |
-| hates          | int(11)      | YES  |     | NULL    |                |
-| description    | varchar(255) | YES  |     | NULL    |                |
-+----------------+--------------+------+-----+---------+----------------+
+
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+| item_id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+| category_id       | varchar(255) | YES  |     | NULL    |                |
+| name              | varchar(255) | YES  |     | NULL    |                |
+| min_price         | int(11)      | YES  |     | NULL    |                |
+| likes             | int(11)      | YES  |     | NULL    |                |
+| hates             | int(11)      | YES  |     | NULL    |                |
+| description       | varchar(255) | YES  |     | NULL    |                |
+| default_thumbnail | varchar(512) | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+
 
 ```
 ```mysql
@@ -62,7 +59,8 @@ CREATE TABLE recommend
     buy_url varchar(255),
     brand varchar(255),
     seller varchar(255),
-    courier varchar(255)
+    courier varchar(255),
+    img varchar(512)
 );
 +---------+--------------+------+-----+---------+-------+
 | Field   | Type         | Null | Key | Default | Extra |
@@ -74,6 +72,7 @@ CREATE TABLE recommend
 | brand   | varchar(255) | YES  |     | NULL    |       |
 | seller  | varchar(255) | YES  |     | NULL    |       |
 | courier | varchar(255) | YES  |     | NULL    |       |
+| img     | varchar(512) | YES  |     | NULL    |       |
 +---------+--------------+------+-----+---------+-------+
 ```
 
@@ -85,10 +84,10 @@ CREATE TABLE recommend
 insert into category values('d0000', '디지털/가전', 'root');
 insert into category values('d00001', '계절가전', 'd0000');
 insert into category values('d000011', '에어컨', 'd00001');
-insert into category values('d000011', '냉풍기', 'd00001');
-insert into category values('d000011', '제습기', 'd00001');
-insert into category values('d000011', '가습기', 'd00001');
-insert into category values('d000011', '공기청정기', 'd00001');
+insert into category values('d000012', '냉풍기', 'd00001');
+insert into category values('d000013', '제습기', 'd00001');
+insert into category values('d000014', '가습기', 'd00001');
+insert into category values('d000015', '공기청정기', 'd00001');
 insert into category values('d00002', '생활가전', 'd0000');
 insert into category values('d000021', '세탁기', 'd00002');
 insert into category values('d000022', '청소기', 'd00002');
@@ -120,8 +119,17 @@ insert into category values('d00012', '자동차기기', 'd0000');
 
 ## item
 ```mysql
+
 insert into items2 values(NULL, "d000091", "닌텐도Switch", "Coupang", 200000, "https://www.costco.co.kr/medias/sys_master/images/h05/h2c/26922555506718.jpg", "https://www.costco.co.kr/medias/sys_master/images/h05/h2c/26922555506718.jpg", "https://www.costco.co.kr/medias/sys_master/images/h05/h2c/26922555506718.jpg", 55, 1, "닌텐도 스위치 짱");
 insert into items2 values(NULL, "d000091", "PlayStation5", "Coupang", 250000, "https://www.joseilbo.com/gisa_img_origin/15858861591585886159_peacetech_origin.jpg", "https://www.joseilbo.com/gisa_img_origin/15858861591585886159_peacetech_origin.jpg", "https://www.joseilbo.com/gisa_img_origin/15858861591585886159_peacetech_origin.jpg", 45, 1, "Playstation whatever");
+insert into items2 values(NULL, "d000011", "에어컨", 550000, "", "", "", 0, 0, "여름엔 에어컨");
+insert into items2 values(NULL, "d000015", "공기청정기", 80000, "", "", "", 0, 0, "미세먼지엔 공청기");
+insert into items2 values(NULL, "d000021", "세탁기", 400000, "", "", "", 0, 0, "빨래엔 세탁기");
+insert into items2 values(NULL, "d000022", "청소기", 400000, "", "", "", 0, 0, "청소엔 청소기");
+insert into items2 values(NULL, "d000042", "이어폰", 100000, "", "", "", 0, 0, "음악엔 이어폰");
+insert into items2 values(NULL, "d000093", "스위치 게임", 40000, "", "", "", 0, 0, "게임엔 게임팩");
+insert into items2 values(NULL, "d000093", "PS4 게임", 40000, "", "", "", 0, 0, "게임엔 게임팩");
+insert into items2 values(NULL, "d000093", "XBOX ONE 게임", 40000, "", "", "", 0, 0, "게임엔 게임팩");
 insert into recommend values(1, "Coupang", 990000, "https://sony.com", "Sony", "Sony", "CJ 대한통운");
 insert into recommend values(2, "Coupang", 360000, "https://nitendo.com", "Nintendo", "Nintendo", "한진택배");
 ```

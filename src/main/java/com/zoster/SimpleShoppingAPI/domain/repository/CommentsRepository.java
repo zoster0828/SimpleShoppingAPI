@@ -19,7 +19,7 @@ public class CommentsRepository {
     }
 
     public List<CommentsEntity> findLatest10ByItemId(String itemId) {
-        List<CommentsVO> commentsVOList = commentsMysqlClient.findTop10ByItemIdOrderByTimestamp(itemId);
+        List<CommentsVO> commentsVOList = commentsMysqlClient.findTop10ByItemIdOrderByTimestampDesc(itemId);
         return commentsVOListToEntityList(commentsVOList);
     }
 
@@ -33,5 +33,11 @@ public class CommentsRepository {
             commentsEntityList.add(new CommentsEntity(commentsVO));
         }
         return commentsEntityList;
+    }
+
+    public CommentsEntity save(CommentsEntity commentsEntity) {
+        CommentsVO commentsVO = commentsEntity.toCommentsVO();
+        CommentsVO savedComments = commentsMysqlClient.save(commentsVO);
+        return new CommentsEntity(commentsVO);
     }
 }

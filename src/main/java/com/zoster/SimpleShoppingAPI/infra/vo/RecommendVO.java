@@ -36,4 +36,7 @@ public class RecommendVO {
 
     @Column(name = "courier", nullable = false)
     String courier;
+
+    @Column(name = "img", nullable = false)
+    String image;
 }

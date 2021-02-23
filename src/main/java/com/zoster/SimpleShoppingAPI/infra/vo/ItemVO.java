@@ -29,14 +29,8 @@ public class ItemVO {
     @Column(name = "min_price", nullable = false)
     Integer minPrice;
 
-    @Column(name = "img_url_big", nullable = false)
-    String imageUrlBig;
-
-    @Column(name = "img_url_middle", nullable = false)
-    String imageUrlMiddle;
-
-    @Column(name = "img_url_small", nullable = false)
-    String imageUrlSmall;
+    @Column(name = "default_thumbnail", nullable = false)
+    String defaultThumbnail;
 
     @Column(name = "likes", nullable = false)
     Integer likes;

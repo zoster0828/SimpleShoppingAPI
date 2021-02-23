@@ -11,4 +11,5 @@ import java.util.List;
 public interface CommentsMysqlClient extends JpaRepository<CommentsVO, String> {
     List<CommentsVO> findByItemIdAndCommentsId(String itemId,String commentsId);
     List<CommentsVO> findTop10ByItemIdOrderByTimestamp(String itemId);
+    List<CommentsVO> findTop10ByItemIdOrderByTimestampDesc(String itemId);
 }

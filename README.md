@@ -45,12 +45,11 @@
   "itemId": "ffasdccwty3412aa23",
   "subject": "닌텐도Switch",
   "market": "coupang",
+  "marketFavicon": "http://image9.coupangcdn.com/image/coupang/favicon/v2/favicon.ico",
   "price": 26000,
   "buyLink": "http://somewhere.in.the.world",
   "imageLink": {
-      "big": "http://imageLink.com",
-      "middle": "http://imageLink.com",
-      "small": "http://imageLink.com"
+      "thumbnail": "http://imageLink.com"
   } ,
   "like": 0,
   "hate": 0,

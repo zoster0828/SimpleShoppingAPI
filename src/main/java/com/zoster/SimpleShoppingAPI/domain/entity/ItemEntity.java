@@ -1,9 +1,11 @@
 package com.zoster.SimpleShoppingAPI.domain.entity;
 
+import com.zoster.SimpleShoppingAPI.domain.Favicon;
 import com.zoster.SimpleShoppingAPI.infra.vo.ImageLinkVO;
 import com.zoster.SimpleShoppingAPI.infra.vo.ItemVO;
 import com.zoster.SimpleShoppingAPI.infra.vo.RecommendVO;
 import lombok.Getter;
+import org.springframework.util.StringUtils;
 
 @Getter
 public class ItemEntity {
@@ -11,6 +13,7 @@ public class ItemEntity {
     private String itemId;
     private String subject;
     private String market;
+    private String marketFavicon;
     private Integer price;
     private String buyLink;
     private ImageLinkVO imageLink;
@@ -26,9 +29,14 @@ public class ItemEntity {
         this.itemId = itemVO.getItemId();
         this.subject = itemVO.getName();
         this.market = recommendVO.getMarket();
+        this.marketFavicon = Favicon.getUrl(market);
         this.price = recommendVO.getPrice();
         this.buyLink = recommendVO.getBuyLink();
-        this.imageLink = new ImageLinkVO(itemVO.getImageUrlBig(), itemVO.getImageUrlMiddle(), itemVO.getImageUrlSmall());
+        if(StringUtils.isEmpty(recommendVO.getImage())){
+            this.imageLink = new ImageLinkVO(itemVO.getDefaultThumbnail());
+        }else{
+            this.imageLink = new ImageLinkVO(recommendVO.getImage());
+        }
         this.like = itemVO.getLikes();
         this.hate = itemVO.getHates();
         this.brand = recommendVO.getBrand();

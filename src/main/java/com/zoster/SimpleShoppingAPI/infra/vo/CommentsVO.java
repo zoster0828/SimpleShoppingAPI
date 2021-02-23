@@ -21,7 +21,7 @@ public class CommentsVO {
     String commentsId;
 
     @Column(name = "timestamp", nullable = false)
-    Long timestamp;
+    Long timestamp = System.currentTimeMillis();
 
     @Column(name = "item_id", nullable = false)
     String itemId;
@@ -30,8 +30,8 @@ public class CommentsVO {
     String text;
 
     @Column(name = "likes", nullable = false)
-    Integer likes;
+    Integer likes = 0;
 
     @Column(name = "hates", nullable = false)
-    Integer hates;
+    Integer hates = 0;
 }

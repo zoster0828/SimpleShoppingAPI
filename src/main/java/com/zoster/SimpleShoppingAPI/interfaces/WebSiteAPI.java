@@ -7,15 +7,12 @@ import com.zoster.SimpleShoppingAPI.domain.entity.ItemEntity;
 import com.zoster.SimpleShoppingAPI.domain.repository.CategoryRepository;
 import com.zoster.SimpleShoppingAPI.domain.repository.CommentsRepository;
 import com.zoster.SimpleShoppingAPI.domain.service.ItemService;
-import com.zoster.SimpleShoppingAPI.infra.vo.ItemVO;
-import com.zoster.SimpleShoppingAPI.interfaces.view.GetCategoryListView;
-import com.zoster.SimpleShoppingAPI.interfaces.view.GetCategoryView;
-import com.zoster.SimpleShoppingAPI.interfaces.view.GetCommentsView;
-import com.zoster.SimpleShoppingAPI.interfaces.view.GetItemView;
+import com.zoster.SimpleShoppingAPI.infra.vo.CommentsVO;
+import com.zoster.SimpleShoppingAPI.interfaces.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -52,9 +49,19 @@ public class WebSiteAPI{
     }
 
     @GetMapping("/comments/{itemId}")
-    public GetCommentsView getComments(@PathVariable("itemId") String itemId,
-                                   @RequestParam("lastId") String lastId){
-        List<CommentsEntity> commentsVOList = commentsRepository.findByItemId(itemId, lastId);
+    public GetCommentsView getComments10(@PathVariable("itemId") String itemId){
+        List<CommentsEntity> commentsVOList = commentsRepository.findLatest10ByItemId(itemId);
         return new GetCommentsView(commentsVOList);
+    }
+
+    @PostMapping("/comments")
+    public AddCommentsView addComments(@RequestBody CommentsEntity commentsEntity){
+        commentsEntity.setLike(0);
+        commentsEntity.setHate(0);
+        commentsEntity.setTimestamp(System.currentTimeMillis());
+
+        CommentsEntity saved = commentsRepository.save(commentsEntity);
+
+        return new AddCommentsView(true, saved);
     }
 }
