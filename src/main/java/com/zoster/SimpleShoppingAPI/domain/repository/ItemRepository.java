@@ -23,15 +23,14 @@ public class ItemRepository {
     RecommendMysqlClient recommendMysqlClient;
 
     public ItemEntity findById(String itemId) {
-        ItemVO itemVO = itemMysqlClient.findById(itemId).get();
-        RecommendVO recommendVO = recommendMysqlClient.findById(itemId).get();
+        Optional<ItemVO> itemVO = itemMysqlClient.findById(itemId);
 
-        if(itemVO == null) {
-            //todo: create Exception
-            return null;
-        } else {
-            ItemEntity itemEntity = new ItemEntity(itemVO, recommendVO);
+        if(itemVO.isPresent()) {
+            RecommendVO recommendVO = recommendMysqlClient.findById(itemId).get();
+            ItemEntity itemEntity = new ItemEntity(itemVO.get(), recommendVO);
             return itemEntity;
+        } else {
+            return null;
         }
     }
 

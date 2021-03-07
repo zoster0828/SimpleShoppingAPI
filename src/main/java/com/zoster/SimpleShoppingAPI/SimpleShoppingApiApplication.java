@@ -8,7 +8,11 @@ import static org.springframework.boot.SpringApplication.run;
 public class SimpleShoppingApiApplication {
 
 	public static void main(String[] args) {
-		run(SimpleShoppingApiApplication.class, args);
+		try {
+			run(SimpleShoppingApiApplication.class, args);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }

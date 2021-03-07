@@ -5,7 +5,10 @@ import com.zoster.SimpleShoppingAPI.infra.vo.ImageLinkVO;
 import com.zoster.SimpleShoppingAPI.infra.vo.ItemVO;
 import com.zoster.SimpleShoppingAPI.infra.vo.RecommendVO;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
+
+import java.sql.Timestamp;
 
 @Getter
 public class ItemEntity {
@@ -23,6 +26,7 @@ public class ItemEntity {
     private String seller;
     private String courier;
     private String description;
+    private Timestamp timestamp;
 
     public ItemEntity(ItemVO itemVO, RecommendVO recommendVO) {
         this.categoryId = itemVO.getCategoryId();
@@ -42,6 +46,7 @@ public class ItemEntity {
         this.brand = recommendVO.getBrand();
         this.seller = recommendVO.getSeller();
         this.courier = recommendVO.getCourier();
-        this.description = itemVO.getDescription();
+        this.description = recommendVO.getTitle();
+        this.timestamp = getTimestamp();
     }
 }

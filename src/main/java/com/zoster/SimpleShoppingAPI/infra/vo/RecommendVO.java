@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @AllArgsConstructor
 @Getter
@@ -18,6 +19,9 @@ public class RecommendVO {
     @Column(name = "item_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     String itemId;
+
+    @Column(name = "title", nullable = false)
+    String title;
 
     @Column(name = "market", nullable = false)
     String market;
@@ -39,4 +43,7 @@ public class RecommendVO {
 
     @Column(name = "img", nullable = false)
     String image;
+
+    @Column(name = "mt", nullable = false)
+    Timestamp timestamp;
 }
